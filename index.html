@@ -1,0 +1,98 @@
+<head>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<div id="terminal">
+    <pre>
+                                                                                                                                   
+                                                                                                                                      
+            CCCCCCCCCCCCC                                                          kkkkkkkk                          AAA               
+        CCC::::::::::::C                                                          k::::::k                         A:::A              
+      CC:::::::::::::::C                                                          k::::::k                        A:::::A             
+      C:::::CCCCCCCC::::C                                                          k::::::k                       A:::::::A            
+    C:::::C       CCCCCCrrrrr   rrrrrrrrr     aaaaaaaaaaaaa       cccccccccccccccc k:::::k    kkkkkkk           A:::::::::A           
+    C:::::C              r::::rrr:::::::::r    a::::::::::::a    cc:::::::::::::::c k:::::k   k:::::k           A:::::A:::::A          
+    C:::::C              r:::::::::::::::::r   aaaaaaaaa:::::a  c:::::::::::::::::c k:::::k  k:::::k           A:::::A A:::::A         
+    C:::::C              rr::::::rrrrr::::::r           a::::a c:::::::cccccc:::::c k:::::k k:::::k           A:::::A   A:::::A        
+    C:::::C               r:::::r     r:::::r    aaaaaaa:::::a c::::::c     ccccccc k::::::k:::::k           A:::::A     A:::::A       
+    C:::::C               r:::::r     rrrrrrr  aa::::::::::::a c:::::c              k:::::::::::k           A:::::AAAAAAAAA:::::A      
+    C:::::C               r:::::r             a::::aaaa::::::a c:::::c              k:::::::::::k          A:::::::::::::::::::::A     
+    C:::::C       CCCCCC r:::::r            a::::a    a:::::a c::::::c     ccccccc k::::::k:::::k        A:::::AAAAAAAAAAAAA:::::A    
+      C:::::CCCCCCCC::::C r:::::r            a::::a    a:::::a c:::::::cccccc:::::ck::::::k k:::::k      A:::::A             A:::::A   
+      CC:::::::::::::::C r:::::r            a:::::aaaa::::::a  c:::::::::::::::::ck::::::k  k:::::k    A:::::A               A:::::A  
+        CCC::::::::::::C r:::::r             a::::::::::aa:::a  cc:::::::::::::::ck::::::k   k:::::k  A:::::A                 A:::::A 
+            CCCCCCCCCCCCC rrrrrrr              aaaaaaaaaa  aaaa    cccccccccccccccckkkkkkkk    kkkkkkkAAAAAAA                   AAAAAAA
+        
+            
+    Crypto class of 2017ⓒ
+    Designer and web developer.
+    Welcome to my page...
+    "Help" for more options
+
+  </pre>
+
+    <div id="terminal-output">
+      <!-- commands and output will be added here -->
+    </div>
+    <form id="command-form">
+      
+      <input type="text" class="blinking-input">
+      
+      <input type="text" id="command-input" />
+      
+      <button type="submit">Enter</button>
+    </form>
+  </div>
+  
+  <body>
+    <script src="script.js"></script>
+
+  </body>
+  <script>
+    const terminalOutput = document.getElementById('terminal-output');
+    const commandForm = document.getElementById('command-form');
+    const commandInput = document.getElementById('command-input');
+  
+    let commands = [];
+    let output = '';
+  
+    commandForm.addEventListener('submit', event => {
+      event.preventDefault();
+      const currentCommand = commandInput.value;
+      commands.push(currentCommand);
+      commandInput.value = '';
+      output = executeCommand(currentCommand);
+      render();
+    });
+  
+    const executeCommand = command => {
+      switch (command) {
+        case 'about':
+          return (
+            'My name is John Doe and I am a software developer. I have experience building web and mobile applications using technologies such as React, Node.js, and MongoDB.'
+          );
+        case 'skills':
+          return 'React, Node.js, MongoDB, JavaScript, HTML, CSS';
+        case 'projects':
+          return 'Project 1: A to-do list app built with React and Node.js\nProject 2: A social media platform built with MongoDB, Express, and React\nProject 3: A game built with Phaser.js';
+        default:
+          return `Unknown command: ${command}`;
+      }
+    };
+  
+    const render = () => {
+    terminalOutput.innerHTML = '';
+    commands.forEach(command => {
+      const commandElement = document.createElement('p');
+      commandElement.textContent = `> ${command}`;
+      terminalOutput.appendChild(commandElement);
+    });
+    const outputElement = document.createElement('p');
+    outputElement.textContent = output;
+    terminalOutput.appendChild(outputElement);
+  };
+
+
+
+
+  
